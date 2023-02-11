@@ -8,7 +8,6 @@ import pages.MainPage;
 import waiters.StandartWaiter;
 
 
-
 public class LoginWindow extends AbsBaseComponent {
 
     @FindBy(css = "div.new-input-line_last:nth-child(5) > button:nth-child(1)")
@@ -28,17 +27,16 @@ public class LoginWindow extends AbsBaseComponent {
         login.click();
         StandartWaiter sw = new StandartWaiter(driver);
         sw.simpleWait();
-        //sw.waitForVisible(By.cssSelector("div.new-log-reg__head-item:nth-child(1)"));
 
         driver.findElement(By.cssSelector("form.new-log-reg__form > div:nth-child(3) > input:nth-child(1)")).sendKeys(email);
-
         driver.findElement(By.cssSelector(".new-input_password")).sendKeys(password);
 
         clickSubmit();
+        sw.simpleWait();
 
-        sw.simpleWait();
-        driver.get("https://otus.ru/lk/biography/personal/");
-        sw.simpleWait();
+        driver.findElement(By.cssSelector(".header3__user-info-name")).click();
+        driver.findElement(By.cssSelector("[href*='/lk/biography/personal']")).click();
+
     }
 
     private void clickSubmit() {

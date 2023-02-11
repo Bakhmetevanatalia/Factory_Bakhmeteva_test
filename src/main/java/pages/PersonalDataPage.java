@@ -1,17 +1,13 @@
 package pages;
 
 import data.AccountData;
-import org.checkerframework.checker.nullness.compatqual.NullableDecl;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import pageobject.PageObject;
 import waiters.StandartWaiter;
 
-import static java.lang.Thread.sleep;
 
 public class PersonalDataPage extends AbsBasePage {
 
@@ -48,27 +44,18 @@ public class PersonalDataPage extends AbsBasePage {
     public PersonalDataPage(WebDriver driver) {
         super(driver);
     }
-
-
+    private static void clearAndSendKeys(WebElement el, String key){
+        el.clear();
+        el.sendKeys(key);
+    }
 
     public void fillInData(){
-        this.ruName.clear();
-        this.ruName.sendKeys(AccountData.ru_name);
-
-        this.ruSurname.clear();
-        this.ruSurname.sendKeys(AccountData.ru_surname);
-
-        this.enName.clear();
-        this.enName.sendKeys(AccountData.en_name);
-
-        this.enSurname.clear();
-        this.enSurname.sendKeys(AccountData.en_surname);
-
-        this.blogName.clear();
-        this.blogName.sendKeys(AccountData.blog_name);
-
-        this.birthday.clear();
-        this.birthday.sendKeys(AccountData.birthday);
+        clearAndSendKeys(this.ruName, AccountData.ru_name);
+        clearAndSendKeys(this.ruSurname, AccountData.ru_surname);
+        clearAndSendKeys(this.enName, AccountData.en_name);
+        clearAndSendKeys(this.enSurname, AccountData.en_surname);
+        clearAndSendKeys(this.blogName, AccountData.blog_name);
+        clearAndSendKeys(this.birthday, AccountData.birthday);
 
         //country
         this.countryButton.click();

@@ -44,18 +44,18 @@ public class Profile_Test {
         PersonalDataPage personalDataPage = new PersonalDataPage(driver);
         personalDataPage.fillInData();
         personalDataPage.clickSave();
+        driver.close();
 
         // Open https://otus.ru in a "clean browser"
-        WebDriver cleanDriver = WebDriverFactory.create(BrowserData.CHROME.getName());
+        driver = WebDriverFactory.create(BrowserData.CHROME.getName());
 
         // Log in to the site
-        loginWindow = new LoginWindow(cleanDriver);
+        loginWindow = new LoginWindow(driver);
         loginWindow.loginAndGoToPersonalPage(AccountData.login, AccountData.pass);
 
         // Check that the previously specified data is displayed in the "About me" section
-        PersonalDataPage p1 = new PersonalDataPage(cleanDriver);
-        Assertions.assertTrue(p1.checkData());
+        PersonalDataPage persData = new PersonalDataPage(driver);
+        Assertions.assertTrue(persData.checkData());
 
-        cleanDriver.close();
     }
 }

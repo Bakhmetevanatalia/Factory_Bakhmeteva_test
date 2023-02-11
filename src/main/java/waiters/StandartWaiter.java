@@ -25,7 +25,7 @@ public class StandartWaiter {
     }
 
     public boolean waitForCondition(ExpectedCondition condition){
-        WebDriverWait webDriverWait = new WebDriverWait(driver,5);
+        WebDriverWait webDriverWait = new WebDriverWait(driver,10);
 
         try{
             webDriverWait.until(condition);
